@@ -12,3 +12,6 @@
 **/RemoteSystemsTempFiles
 
 **/target/*
+
+**/rest-app/.classpath
+**/rest-app/.project
