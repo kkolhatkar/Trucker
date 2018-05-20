@@ -1,10 +1,13 @@
-package application.trucker.readings;
+package application.trucker.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import application.trucker.entity.Readings;
+import application.trucker.repository.ReadingsRepository;
+
 @Service
-public class ReadingsService {
+public class ReadingsServiceImpl {
 	
 	@Autowired
 	private ReadingsRepository readingsRepository;

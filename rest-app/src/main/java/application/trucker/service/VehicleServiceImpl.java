@@ -1,14 +1,18 @@
-package application.trucker.vehicle;
+package application.trucker.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import application.trucker.entity.Vehicle;
+import application.trucker.exception.VehicleNotFoundException;
+import application.trucker.repository.VehicleRepository;
 
 /**
  * @author Kunal
  *
  */
 @Service
-public class VehicleService {
+public class VehicleServiceImpl {
 	
 	@Autowired
 	private VehicleRepository vehicleRepository;
@@ -27,6 +31,11 @@ public class VehicleService {
 	
 	
 	public Vehicle getVehicleByVin(String vin) {
-		return vehicleRepository.findByVin(vin);
+		Vehicle vehicle = vehicleRepository.findByVin(vin);
+		if(vehicle == null){
+			throw new VehicleNotFoundException("Vehicle with vin: "+vin+" NOT found");
+		}else {
+			return vehicle;
+		}
 	}
 }

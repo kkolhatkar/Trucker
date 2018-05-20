@@ -1,4 +1,4 @@
-package application.trucker.vehicle;
+package application.trucker.entity;
 
 import java.util.Date;
 import javax.persistence.Entity;

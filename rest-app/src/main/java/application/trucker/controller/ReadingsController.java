@@ -1,4 +1,4 @@
-package application.trucker.readings;
+package application.trucker.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+
+import application.trucker.entity.Readings;
+import application.trucker.service.ReadingsServiceImpl;
+
 import org.springframework.http.HttpStatus;
 
 /**
@@ -19,7 +23,7 @@ import org.springframework.http.HttpStatus;
 public class ReadingsController {
 
 	@Autowired
-	private ReadingsService readingsService;
+	private ReadingsServiceImpl readingsService;
 	
 	@CrossOrigin	
 	@RequestMapping(value = "/readings", method = RequestMethod.POST, produces = {"application/json"})

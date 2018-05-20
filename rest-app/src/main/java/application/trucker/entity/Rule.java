@@ -1,4 +1,4 @@
-package application.trucker.rule;
+package application.trucker.entity;
 
 /**
  * @author Kunal
