@@ -22,29 +22,27 @@ import application.trucker.service.VehicleServiceImpl;
 
 @Controller
 @ResponseBody
-@RequestMapping(path="vehicles")
+@CrossOrigin
+@RequestMapping(path="api/vehicles")
 public class VehicleController {
 	
 	@Autowired
 	private VehicleServiceImpl vehicleService;
 	
-	@CrossOrigin
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public Iterable<Vehicle> getAllVehicle() {
 		return vehicleService.findAllVehicle();
 	}	
 	
-	@CrossOrigin
 	@RequestMapping(method = RequestMethod.GET,value="{vin}")
 	public Vehicle getVehicle(@PathVariable("vin") String vin){
 		 return vehicleService.getVehicleByVin(vin);
 	}
 	
-	@CrossOrigin
 	@RequestMapping(method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.OK)
 	public void saveVehicle(@RequestBody Vehicle []vehicle){
 		vehicleService.saveVehicle(vehicle);
 	}
-	
 }

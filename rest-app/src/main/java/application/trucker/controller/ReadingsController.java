@@ -20,20 +20,21 @@ import org.springframework.http.HttpStatus;
  */
 
 @Controller
+@RequestMapping(path="api/readings")
+@CrossOrigin
 public class ReadingsController {
 
 	@Autowired
 	private ReadingsServiceImpl readingsService;
 	
-	@CrossOrigin	
-	@RequestMapping(value = "/readings", method = RequestMethod.POST, produces = {"application/json"})
+		
+	@RequestMapping(method = RequestMethod.POST, produces = {"application/json"})
     @ResponseStatus(HttpStatus.OK)
 	public void saveReadings(@RequestBody Readings reading) {
 		readingsService.saveReadings(reading);
 	}
 	
-	@CrossOrigin	
-	@RequestMapping(value = "/readings", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
     @ResponseBody
 	public Iterable<Readings>  findAllReadings() {
 		return readingsService.findAllReadings();
