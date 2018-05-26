@@ -1,9 +1,11 @@
 package application.trucker.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import application.trucker.entity.Vehicle;
+import application.trucker.entity.Vehicles;
 import application.trucker.exception.VehicleNotFoundException;
 import application.trucker.repository.VehicleRepository;
 
@@ -12,30 +14,28 @@ import application.trucker.repository.VehicleRepository;
  *
  */
 @Service
-public class VehicleServiceImpl {
-	
+public class VehicleServiceImpl implements VehicleService {
+
 	@Autowired
 	private VehicleRepository vehicleRepository;
-	
-	
-	public String saveVehicle(Vehicle []vehicle){
+
+	public String saveVehicle(Vehicles[] vehicle) {
 		for (int i = 0; i < vehicle.length; i++) {
-			vehicleRepository.save( vehicle[i]);
-		}			
-		return "okay Data Inserted";
+			vehicleRepository.save(vehicle[i]);
+		}
+		return "Data Inserted";
 	}
-	
-	public Iterable<Vehicle> findAllVehicle() {
+
+	public Iterable<Vehicles> findAllVehicle() {
 		return vehicleRepository.findAll();
 	}
-	
-	
-	public Vehicle getVehicleByVin(String vin) {
-		Vehicle vehicle = vehicleRepository.findByVin(vin);
-		if(vehicle == null){
-			throw new VehicleNotFoundException("Vehicle with vin: "+vin+" NOT found");
-		}else {
-			return vehicle;
-		}
+
+	public Vehicles getVehicleByVin(String vin) {
+		Optional<Vehicles> vehicle = vehicleRepository.findById(vin);
+		if (!vehicle.isPresent()) 
+			throw new VehicleNotFoundException("Vehicle with vin: " + vin + " NOT found");
+		else
+			return vehicle.get();
+
 	}
 }

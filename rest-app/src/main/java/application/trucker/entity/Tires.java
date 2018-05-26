@@ -6,9 +6,10 @@ package application.trucker.entity;
  */
 public class Tires {
 	private Integer frontLeft;
-	private Integer   frontRight;
-	private Integer  rearLeft;
-	private Integer  rearRight;
+	private Integer frontRight;
+	private Integer rearLeft;
+	private Integer rearRight;
+	
 	public Integer getFrontLeft() {
 		return frontLeft;
 	}

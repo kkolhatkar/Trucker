@@ -1,6 +1,9 @@
 package application.trucker.entity;
 
 import java.util.Date;
+import java.util.UUID;
+
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,13 +15,13 @@ import javax.persistence.Table;
  * @author Kunal
  *
  */
-@Entity(name = "Readings")
+@Entity
 @Table(name = "Readings")
 public class Readings {
 	
 	@Id
-	@GeneratedValue
-	private Integer readingNumber;
+    @Column(columnDefinition = "VARCHAR(36)")
+	private String readingNumber;
 	private String vin;
 	private Double latitude;
 	private Double longitude;
@@ -33,10 +36,14 @@ public class Readings {
 	@Embedded
 	private Tires tires;
 	
-	public Integer getReadingNumber() {
+	public Readings() {
+		this.readingNumber = UUID.randomUUID().toString();
+	}
+	
+	public String getReadingNumber() {
 		return readingNumber;
 	}
-	public void setReadingNumber(Integer readingNumber) {
+	public void setReadingNumber(String readingNumber) {
 		this.readingNumber = readingNumber;
 	}
 	public String getVin() {

@@ -8,7 +8,7 @@ public enum Rule {
 	RULE1("ENGINE RPM IS ABOVE LIMIT","HIGH"), 
 	RULE2("FUEL IS LESS","MEDIUM"), 
 	RULE3("LOW TIRE PRESSURE","LOW"), 
-	RULE4("ENGINE ISSUE","LOWS");
+	RULE4("ENGINE ISSUE","LOW");
 	
 	private final String reason;
 	private final String severity;

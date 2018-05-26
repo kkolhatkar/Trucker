@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import application.trucker.entity.Readings;
-import application.trucker.service.ReadingsServiceImpl;
+import application.trucker.service.ReadingsService;
 
 import org.springframework.http.HttpStatus;
 
@@ -20,12 +20,12 @@ import org.springframework.http.HttpStatus;
  */
 
 @Controller
-@RequestMapping(path="api/readings")
+@RequestMapping(path="readings")
 @CrossOrigin
 public class ReadingsController {
 
 	@Autowired
-	private ReadingsServiceImpl readingsService;
+	private ReadingsService readingsService;
 	
 		
 	@RequestMapping(method = RequestMethod.POST, produces = {"application/json"})

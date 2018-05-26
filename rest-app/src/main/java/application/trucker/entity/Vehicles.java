@@ -11,9 +11,9 @@ import javax.persistence.TemporalType;
  * @author Kunal
  *
  */
-@Entity(name = "Vehicle")
-@Table(name = "Vehicle")
-public class Vehicle {
+@Entity
+@Table(name = "Vehicles")
+public class Vehicles {
 	@Id
 	private String vin;
 	private  String make;
