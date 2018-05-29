@@ -5,32 +5,24 @@
 <title>Backend Endpoints</title>
 </head>
 <body>
-	<ul>
-		<h3> API can be accssed at <a target="_blank" href="http://www.ktrucker.tk/api/">ktrucker.tk</a></h3>
-		<li>which is hosted on EC2 and connected to live database MySQL
-			on RDS</li>
-
-		<h3>A simple Angular app is included for my testing purpose hosted at <a target="_blank" href="http://ktrucker.s3-website-us-west-2.amazonaws.com/">Angular-app</a></h3>
-
-		<h3>Listed below are accsesebile URLs for GET, POST and put</h3>
-		<li><h3>Alerts</h3></li>
-		<li>To view all Alerts : /api/alerts/</li>
-		<li>To view Alerts for specific vehicle :
-			/api/alerts/WA1CMAFE6BD002500</li>
-		<li>To view Alerts within last '2' hours for 'HIGH' severity :
-			/api/alerts/?severity=HIGH&within=2</li>
-		<li>*Note severity can be HIGH, LOW, MEDIUM and within is in
-			hours</li>
-		<li><h3>Vehicles</h3></li>
-		<li>To view all Vehicles : /api/vehicles/</li>
-		<li>To specific Vehicles : /api/vehicles/WA1CMAFE6BD002500</li>
-		<li>To ingest Vehicles from mocker: PUT: /api/vehicles/</li>
-		<li><h3>Readings</h3></li>
-		<li>To view all Readings : /api/readings/</li>
-		<li>To specific Vehicles within last 30 minutes :
-			/api/readings/WA1CMAFE6BD002500?within=30</li>
-		<li>*Note within is in minutes</li>
-		<li>To ingest Readings from mocker: POST: /api/readings/</li>
-	</ul>
+	<center>
+		<div>
+			<h3>
+				API can be accessed at <a target="_blank"
+					href="http://www.ktrucker.tk/api/">ktrucker.tk/api</a>
+			</h3>
+			<h4>*connected to live database MySQL on RDS</h4>
+		</div>
+		<div>
+			<a target="_blank" href="http://ktrucker.tk/api/swagger-ui.html">Swagger
+				URL</a>
+		</div>
+		<br>
+		<div>
+			<a target="_blank"
+				href="http://ktrucker.s3-website-us-west-2.amazonaws.com/">Angular-App
+				for my testing purpose</a>
+		</div>
+	</center>
 </body>
 </html>
