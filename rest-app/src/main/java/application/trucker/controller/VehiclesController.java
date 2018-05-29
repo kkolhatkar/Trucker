@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import application.trucker.entity.Vehicles;
 import application.trucker.service.VehicleService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 
 /**
@@ -24,33 +26,25 @@ import application.trucker.service.VehicleService;
 @ResponseBody
 @CrossOrigin
 @RequestMapping(path="vehicles")
+@Api(value="VehiclesController")
 public class VehiclesController {
 	
 	@Autowired
 	private VehicleService vehicleService;
-	
-	/**
-	 * Find All Vehicles
-	 * 
-	 */
+
+	@ApiOperation("List All Vehicles")
 	@RequestMapping(method = RequestMethod.GET)
 	public Iterable<Vehicles> getAllVehicle() {
 		return vehicleService.findAllVehicle();
 	}	
 	
-	/**
-	 * Returns specific vehicle by (Vin)
-	 * 
-	 */
+	@ApiOperation("Returns specific vehicle by (Vin)")
 	@RequestMapping(method = RequestMethod.GET,value="{vin}")
 	public Vehicles getVehicle(@PathVariable("vin") String vin){
 		 return vehicleService.getVehicleByVin(vin);
 	}
 	
-	/**
-	 * Save vehicles
-	 * 
-	 */
+	@ApiOperation("Ingest Vehicles")
 	@RequestMapping(method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.OK)
 	public void saveVehicle(@RequestBody Vehicles []vehicle){

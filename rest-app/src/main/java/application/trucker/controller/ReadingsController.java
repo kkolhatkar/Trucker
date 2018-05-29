@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import application.trucker.entity.Readings;
 import application.trucker.service.ReadingsService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 import org.springframework.http.HttpStatus;
 
@@ -24,33 +26,27 @@ import org.springframework.http.HttpStatus;
 @Controller
 @RequestMapping(path = "readings")
 @CrossOrigin
+@Api(value="ReadingsController")
 public class ReadingsController {
 
 	@Autowired
 	private ReadingsService readingsService;
 
-	/**
-	 * Save Readings
-	 */
+	@ApiOperation("Save Readings")
 	@RequestMapping(method = RequestMethod.POST, produces = { "application/json" })
 	@ResponseStatus(HttpStatus.OK)
 	public void saveReadings(@RequestBody Readings reading) {
 		readingsService.saveReadings(reading);
 	}
 
-	/**
-	 * Find All Readings
-	 */
+	@ApiOperation("List All Readings")
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public Iterable<Readings> findAllReadings() {
 		return readingsService.findAllReadings();
 	}
 
-	/**
-	 * Returns Alerts for a specific vehicle (vin) within last x minutes. Specifying
-	 * min is required parameter
-	 */
+	@ApiOperation("Returns Alerts for a specific vehicle (vin) within last x minutes. Specifying min is required parameter")
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.GET, value = "{vin}")
 	public Iterable<Readings> getVehicleInfoByVinInTime(@PathVariable("vin") String vin,
