@@ -3,6 +3,7 @@ package application.trucker.service;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import application.trucker.entity.Alerts;
@@ -10,20 +11,20 @@ import application.trucker.entity.Readings;
 import application.trucker.entity.Rule;
 import application.trucker.entity.Vehicles;
 import application.trucker.exception.VehicleNotFoundException;
-import application.trucker.repository.RuleRepository;
+import application.trucker.repository.AlertRepository;
+
 @Service
-public class RuleServiceImpl implements RuleService {
+public class AlertsServiceImpl implements AlertsService {
 
 	@Autowired
-	private RuleRepository ruleRepository;
-
+	private AlertRepository alertRepository;
 	@Autowired
 	private VehicleServiceImpl vehicleService;
 
 	@Override
 	public Boolean validateRule(Readings reading) {
 		String vin = reading.getVin();
-		Date alertTime =  reading.getTimestamp();
+		Date alertTime = reading.getTimestamp();
 		Vehicles vehicle = vehicleService.getVehicleByVin(vin);
 		Boolean isValid = true;
 
@@ -59,16 +60,21 @@ public class RuleServiceImpl implements RuleService {
 		alert.setAlertOccured(alertTime);
 		alert.setReason(rule.getReason());
 		alert.setSeverity(rule.getSeverity());
-		ruleRepository.save(alert);
+		alertRepository.save(alert);
 	}
-	
-	public Iterable<Alerts> getAlertByVin(String vin) {
-		return ruleRepository.findByVin(vin);
+
+	public Iterable<Alerts> findByVin(String vin) {
+		return alertRepository.findByVin(vin);
 	}
 
 	@Override
-	public Iterable<Alerts> getAllAlert() {
-		return ruleRepository.findAll();
-	}	
+	public Iterable<Alerts> findAll() {
+		return alertRepository.findAll();
+	}
+
+	@Override
+	public Iterable<Alerts> findAlertsByHour(String severity, Integer hour) {
+		return alertRepository.getAlertsByHour(severity, hour, new Sort(Sort.Direction.ASC, "vin"));
+	}
 
 }

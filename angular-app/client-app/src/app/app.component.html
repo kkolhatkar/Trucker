@@ -1,0 +1,46 @@
+<mat-toolbar style="justify-content: center;">
+  <h2>Trucker Dashboard</h2>
+</mat-toolbar>
+<mat-sidenav-container class="home-container">
+  <mat-sidenav mode="side" [fixedInViewport]="true" class="home-sidenav" opened>
+    <mat-card>
+      <img mat-card-image src="https://irp-cdn.multiscreensite.com/87141ed9/dms3rep/multi/desktop/HX615-8000x5333.png" alt="Truck">
+      <mat-card-content style="justify-content: center;">
+        <h2>Kunal Kolhatkar</h2>
+      </mat-card-content>
+    </mat-card>
+    <mat-list>
+      <h3 mat-subheader>Trucks</h3>
+      <mat-list-item>
+        <a mat-button (click)="getTrucks()">List Vehickes</a>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </mat-sidenav>
+  <section>
+
+    <div style="justify-content: center;" *ngIf="displayVehicle">
+      <mat-card style="margin-left:10%;margin-bottom:2%; margin-top:2%; width: 60%">
+        <h3>List of Vehicles</h3>
+      </mat-card>
+      <div *ngFor="let vehicle of vehicleList" class="row">
+        <div style="margin-left:10%;margin-bottom:2%; margin-top:2%">
+          <mat-card style="background-color: white; width: 50%">
+            <mat-card-title>
+              Make: {{vehicle.make}}
+            </mat-card-title>
+            <mat-card-content>
+              Vin {{vehicle.vin}}
+              <br> Model: {{vehicle.model}}
+              <br> Year: {{vehicle.year}}
+              <br> RPM: {{vehicle.redlineRpm}}
+              <br> Last Service Date: {{vehicle.lastServiceDate}}
+              <br>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </section>
+</mat-sidenav-container>
+
