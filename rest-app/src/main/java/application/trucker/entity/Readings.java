@@ -1,5 +1,6 @@
 package application.trucker.entity;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.UUID;
 
@@ -24,7 +25,7 @@ public class Readings {
 	private String vin;
 	private Double latitude;
 	private Double longitude;
-	private Date timestamp;
+	private Timestamp timestamp;
 	private Float fuelVolume;
 	private Float speed;
 	private Float engineHp;
@@ -65,12 +66,15 @@ public class Readings {
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
-	public Date getTimestamp() {
+
+	public Timestamp getTimestamp() {
 		return timestamp;
 	}
-	public void setTimestamp(Date timestamp) {
+
+	public void setTimestamp(Timestamp timestamp) {
 		this.timestamp = timestamp;
 	}
+
 	public Float getFuelVolume() {
 		return fuelVolume;
 	}

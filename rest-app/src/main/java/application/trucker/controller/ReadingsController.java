@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import application.trucker.dto.GeoLocationDTO;
 import application.trucker.entity.Readings;
 import application.trucker.service.ReadingsService;
 import io.swagger.annotations.Api;
@@ -46,10 +47,10 @@ public class ReadingsController {
 		return readingsService.findAllReadings();
 	}
 
-	@ApiOperation("Returns Alerts for a specific vehicle (vin) within last x minutes. Specifying min is required parameter")
+	@ApiOperation("Returns GeoLocation for a specific vehicle (vin) within last x minutes. Specifying min is required parameter")
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.GET, value = "{vin}")
-	public Iterable<Readings> getVehicleInfoByVinInTime(@PathVariable("vin") String vin,
+	public Iterable<GeoLocationDTO> getVehicleInfoByVinInTime(@PathVariable("vin") String vin,
 			@RequestParam(value = "within", required = true) Integer min) {
 		return readingsService.getVehicleInfoByVinInTime(vin, min);
 	}

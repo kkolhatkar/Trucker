@@ -1,5 +1,6 @@
 package application.trucker.entity;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.UUID;
 
@@ -22,8 +23,7 @@ public class Alerts {
     @Column(columnDefinition = "VARCHAR(36)")
 	private String alertId;
 	private String vin;
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date alertOccured;
+	private Timestamp alertOccured;
 	private String reason;
 	private String severity;
 	
@@ -43,12 +43,15 @@ public class Alerts {
 	public void setVin(String vin) {
 		this.vin = vin;
 	}
-	public Date getAlertOccured() {
+
+	public Timestamp getAlertOccured() {
 		return alertOccured;
 	}
-	public void setAlertOccured(Date alertOccured) {
+
+	public void setAlertOccured(Timestamp alertOccured) {
 		this.alertOccured = alertOccured;
 	}
+
 	public String getReason() {
 		return reason;
 	}

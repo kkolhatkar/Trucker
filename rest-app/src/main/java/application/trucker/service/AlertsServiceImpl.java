@@ -1,6 +1,6 @@
 package application.trucker.service;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -24,7 +24,7 @@ public class AlertsServiceImpl implements AlertsService {
 	@Override
 	public Boolean validateRule(Readings reading) {
 		String vin = reading.getVin();
-		Date alertTime = reading.getTimestamp();
+		Timestamp alertTime = reading.getTimestamp();
 		Vehicles vehicle = vehicleService.getVehicleByVin(vin);
 		Boolean isValid = true;
 
@@ -54,7 +54,7 @@ public class AlertsServiceImpl implements AlertsService {
 		return isValid;
 	}
 
-	public void saveAlert(Rule rule, String vin, Date alertTime) {
+	public void saveAlert(Rule rule, String vin, Timestamp alertTime) {
 		Alerts alert = new Alerts();
 		alert.setVin(vin);
 		alert.setAlertOccured(alertTime);
