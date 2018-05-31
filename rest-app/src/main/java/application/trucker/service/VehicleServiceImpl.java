@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import application.trucker.entity.Vehicles;
-import application.trucker.exception.VehicleNotFoundException;
+import application.trucker.exception.ResourceNotFoundException;
 import application.trucker.repository.VehicleRepository;
 
 /**
@@ -33,7 +33,7 @@ public class VehicleServiceImpl implements VehicleService {
 	public Vehicles getVehicleByVin(String vin) {
 		Optional<Vehicles> vehicle = vehicleRepository.findById(vin);
 		if (!vehicle.isPresent()) 
-			throw new VehicleNotFoundException("Vehicle with vin: " + vin + " NOT found");
+			throw new ResourceNotFoundException("Vehicle with vin: " + vin + " NOT found");
 		else
 			return vehicle.get();
 

@@ -1,6 +1,8 @@
 package application.trucker.service;
 
 import java.sql.Timestamp;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -10,7 +12,7 @@ import application.trucker.entity.Alerts;
 import application.trucker.entity.Readings;
 import application.trucker.entity.Rule;
 import application.trucker.entity.Vehicles;
-import application.trucker.exception.VehicleNotFoundException;
+import application.trucker.exception.ResourceNotFoundException;
 import application.trucker.repository.AlertRepository;
 
 @Service
@@ -29,7 +31,7 @@ public class AlertsServiceImpl implements AlertsService {
 		Boolean isValid = true;
 
 		if (vehicle == null) {
-			throw new VehicleNotFoundException("Vehicle with vin: " + vin + " NOT found");
+			throw new ResourceNotFoundException("Vehicle with vin: " + vin + " NOT found");
 		} else {
 			if (reading.getEngineRpm() > vehicle.getRedlineRpm()) {
 				isValid = false;
@@ -64,7 +66,11 @@ public class AlertsServiceImpl implements AlertsService {
 	}
 
 	public Iterable<Alerts> findByVin(String vin) {
-		return alertRepository.findByVin(vin);
+		List<Alerts> vehicle = (List<Alerts>) alertRepository.findByVin(vin);
+		if(vehicle.isEmpty())
+			throw new ResourceNotFoundException("Alert with vin"+vin+" Not Found");
+		else
+			return vehicle;
 	}
 
 	@Override
