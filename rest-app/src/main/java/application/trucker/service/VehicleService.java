@@ -1,11 +1,13 @@
 package application.trucker.service;
 
+import java.util.List;
+
 import application.trucker.entity.Vehicles;
 
 public interface VehicleService {
 	
 	public String saveVehicle(Vehicles []vehicle);
-	public Iterable<Vehicles> findAllVehicle();
-	public Vehicles getVehicleByVin(String vin);
+	public List<Vehicles> findAll();
+	public Vehicles findVehicleByVin(String vin);
 
 }

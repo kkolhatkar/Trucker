@@ -1,5 +1,6 @@
 package application.trucker.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +27,11 @@ public class VehicleServiceImpl implements VehicleService {
 		return "Data Inserted";
 	}
 
-	public Iterable<Vehicles> findAllVehicle() {
+	public List<Vehicles> findAll() {
 		return vehicleRepository.findAll();
 	}
 
-	public Vehicles getVehicleByVin(String vin) {
+	public Vehicles findVehicleByVin(String vin) {
 		Optional<Vehicles> vehicle = vehicleRepository.findById(vin);
 		if (!vehicle.isPresent()) 
 			throw new ResourceNotFoundException("Vehicle with vin: " + vin + " NOT found");

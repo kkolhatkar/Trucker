@@ -1,5 +1,7 @@
 package application.trucker.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -43,16 +45,16 @@ public class ReadingsController {
 	@ApiOperation("List All Readings")
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
-	public Iterable<Readings> findAllReadings() {
+	public List<Readings> findAllReadings() {
 		return readingsService.findAllReadings();
 	}
 
 	@ApiOperation("Returns GeoLocation for a specific vehicle (vin) within last x minutes. Specifying min is required parameter")
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.GET, value = "{vin}")
-	public Iterable<GeoLocationDTO> getVehicleInfoByVinInTime(@PathVariable("vin") String vin,
+	public List<GeoLocationDTO> findVehicleInfoByVinInTime(@PathVariable("vin") String vin,
 			@RequestParam(value = "within", required = true) Integer min) {
-		return readingsService.getVehicleInfoByVinInTime(vin, min);
+		return readingsService.findVehicleInfoByVinInTime(vin, min);
 	}
 
 }

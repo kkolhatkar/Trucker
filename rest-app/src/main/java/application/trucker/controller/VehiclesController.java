@@ -1,5 +1,7 @@
 package application.trucker.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -34,14 +36,14 @@ public class VehiclesController {
 
 	@ApiOperation("List All Vehicles")
 	@RequestMapping(method = RequestMethod.GET)
-	public Iterable<Vehicles> getAllVehicle() {
-		return vehicleService.findAllVehicle();
+	public List<Vehicles> findAll() {
+		return vehicleService.findAll();
 	}	
 	
 	@ApiOperation("Returns specific vehicle by (Vin)")
 	@RequestMapping(method = RequestMethod.GET,value="{vin}")
-	public Vehicles getVehicle(@PathVariable("vin") String vin){
-		 return vehicleService.getVehicleByVin(vin);
+	public Vehicles findVehicleByVin(@PathVariable("vin") String vin){
+		 return vehicleService.findVehicleByVin(vin);
 	}
 	
 	@ApiOperation("Ingest Vehicles")

@@ -23,11 +23,11 @@ public class ReadingsServiceImpl implements ReadingsService {
 		ruleService.validateRule(reading);
 	}
 
-	public Iterable<Readings> findAllReadings() {
+	public List<Readings> findAllReadings() {
 		return readingsRepository.findAll();
 	}
 
-	public Iterable<GeoLocationDTO> getVehicleInfoByVinInTime(String vin, Integer min) {
+	public List<GeoLocationDTO> findVehicleInfoByVinInTime(String vin, Integer min) {
 		Iterable<Readings> readings = readingsRepository.getVehicleInfoByVinInTime(vin, min);
 		List<GeoLocationDTO> locationList = new LinkedList<>();
 		

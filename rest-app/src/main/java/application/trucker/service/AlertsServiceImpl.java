@@ -27,7 +27,7 @@ public class AlertsServiceImpl implements AlertsService {
 	public Boolean validateRule(Readings reading) {
 		String vin = reading.getVin();
 		Timestamp alertTime = reading.getTimestamp();
-		Vehicles vehicle = vehicleService.getVehicleByVin(vin);
+		Vehicles vehicle = vehicleService.findVehicleByVin(vin);
 		Boolean isValid = true;
 
 		if (vehicle == null) {
@@ -65,8 +65,8 @@ public class AlertsServiceImpl implements AlertsService {
 		alertRepository.save(alert);
 	}
 
-	public Iterable<Alerts> findByVin(String vin) {
-		List<Alerts> vehicle = (List<Alerts>) alertRepository.findByVin(vin);
+	public List<Alerts> findByVin(String vin) {
+		List<Alerts> vehicle = alertRepository.findByVin(vin);
 		if(vehicle.isEmpty())
 			throw new ResourceNotFoundException("Alert with vin"+vin+" Not Found");
 		else
@@ -74,12 +74,12 @@ public class AlertsServiceImpl implements AlertsService {
 	}
 
 	@Override
-	public Iterable<Alerts> findAll() {
+	public List<Alerts> findAll() {
 		return alertRepository.findAll();
 	}
 
 	@Override
-	public Iterable<Alerts> findAlertsByHour(String severity, Integer hour) {
+	public List<Alerts> findAlertsByHour(String severity, Integer hour) {
 		return alertRepository.getAlertsByHour(severity, hour, new Sort(Sort.Direction.ASC, "vin"));
 	}
 

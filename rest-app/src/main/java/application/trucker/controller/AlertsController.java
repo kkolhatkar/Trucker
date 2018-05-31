@@ -1,5 +1,7 @@
 package application.trucker.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -27,7 +29,7 @@ public class AlertsController {
 
 	@ApiOperation("Returns All Alerts severity and within(within last how many hour) are optional parameter")
 	@RequestMapping(method = RequestMethod.GET)
-	public Iterable<Alerts> getAlertsByHour(@RequestParam(value = "severity", required = false) String severity,
+	public List<Alerts> findAlertsByHour(@RequestParam(value = "severity", required = false) String severity,
 			@RequestParam(value = "within", required = false) Integer hour) {
 		if (severity == null && hour == null) {
 			return alertService.findAll();
@@ -38,7 +40,7 @@ public class AlertsController {
 
 	@ApiOperation("Returns Alerts for a specific vehicle (Vin)")
 	@RequestMapping(method = RequestMethod.GET, value = "{vin}")
-	public Iterable<Alerts> getAlertByVin(@PathVariable("vin") String vin) {
+	public List<Alerts> findAlertByVin(@PathVariable("vin") String vin) {
 		return alertService.findByVin(vin);
 	}
 }

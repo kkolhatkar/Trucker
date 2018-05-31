@@ -1,6 +1,7 @@
 package application.trucker.service;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import application.trucker.entity.Alerts;
 import application.trucker.entity.Readings;
@@ -10,8 +11,8 @@ public interface AlertsService {
 	
 	public Boolean validateRule(Readings reading);
 	public void saveAlert(Rule rule, String vin, Timestamp alertTime);
-	public Iterable<Alerts> findByVin(String vin);
-	public Iterable<Alerts> findAll();
-	public Iterable<Alerts> findAlertsByHour(String severity, Integer hour);
+	public List<Alerts> findByVin(String vin);
+	public List<Alerts> findAll();
+	public List<Alerts> findAlertsByHour(String severity, Integer hour);
 
 }
