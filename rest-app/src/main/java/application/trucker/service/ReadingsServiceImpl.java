@@ -16,11 +16,11 @@ public class ReadingsServiceImpl implements ReadingsService {
 	@Autowired
 	private ReadingsRepository readingsRepository;
 	@Autowired
-	private AlertsService ruleService;
+	private AlertsService alertService;
 
 	public void saveReadings(Readings reading) {
 		readingsRepository.save(reading);
-		ruleService.validateRule(reading);
+		alertService.validateRule(reading);
 	}
 
 	public List<Readings> findAllReadings() {
