@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import application.trucker.dto.GeoLocationDTO;
 import application.trucker.entity.Readings;
@@ -22,11 +23,13 @@ public class ReadingsServiceImpl implements ReadingsService {
 		readingsRepository.save(reading);
 		alertService.validateRule(reading);
 	}
-
+	
+	@Transactional(readOnly = true)
 	public List<Readings> findAllReadings() {
 		return readingsRepository.findAll();
 	}
-
+	
+	@Transactional(readOnly = true)
 	public List<GeoLocationDTO> findVehicleInfoByVinInTime(String vin, Integer min) {
 		Iterable<Readings> readings = readingsRepository.getVehicleInfoByVinInTime(vin, min);
 		List<GeoLocationDTO> locationList = new LinkedList<>();
