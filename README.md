@@ -1,6 +1,9 @@
-# trucker-seed
-seed for the Webservices & Cloud project
+# KTrucker
 
-### For the final module submission, update following urls for your app:
+## API can be accssed at http://www.ktrucker.tk/api/   
+
 **`Jenkins URL`**: `http://ec2-<somehost>.amazonaws.com/jenkins`    
-**`Swagger URL`**: `http://ec2-<somehost>.amazonaws.com/swagger`
+**`Swagger URL`**: `http://ktrucker.tk/api/swagger-ui.html`
+
+### A simple Angular app is included for my testing purpose
+http://ktrucker.s3-website-us-west-2.amazonaws.com/
