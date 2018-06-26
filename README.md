@@ -1,6 +1,6 @@
 # KTrucker
 
-## API can be accssed at http://ktrucker.tk/api/   
+## API can be accssed at http://ktrucker.tk/  
 
 **`Jenkins URL`**: `http://ec2-<somehost>.amazonaws.com/jenkins`    
 **`Swagger URL`**: `http://ktrucker.tk/api/swagger-ui.html`
